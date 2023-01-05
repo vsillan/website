@@ -26,31 +26,28 @@ const Bio = () => {
     }
   `)
 
-  // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
 
   return (
     <div className="bio">
+      {author?.name && (
+        <div style={{ flex: 1, flexColumn: 1 }}>
+          <p>
+            Hello, I am <strong>{author.name}</strong>
+          </p>
+          <p>{author?.summary || null}</p>
+        </div>
+      )}
       <StaticImage
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic.jpeg"
-        width={50}
-        height={50}
-        quality={95}
+        src="../images/profile-pic2.jpeg"
+        width={200}
+        height={200}
+        quality={100}
         alt="Profile picture"
       />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            Twitter
-          </a>
-        </p>
-      )}
     </div>
   )
 }
