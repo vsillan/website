@@ -31,7 +31,7 @@ const Bio = () => {
   return (
     <div className="bio">
       {author?.name && (
-        <div style={{ flex: 1, flexColumn: 1 }}>
+        <div style={{ flex: 1, flexDirection: "column" }}>
           <p>
             Hello, I am <strong>{author.name}</strong>
           </p>

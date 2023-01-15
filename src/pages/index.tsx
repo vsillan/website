@@ -1,13 +1,18 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Bio from "../components/Bio"
+import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 import { NavBar } from "../components/NavBar"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+type Props = {
+  data: Queries.IndexPageQuery
+  location: Location
+}
+
+const BlogIndex: React.FC<Props> = ({ data, location }) => {
+  const siteTitle = data.site?.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {
@@ -30,10 +35,14 @@ const BlogIndex = ({ data, location }) => {
         <Bio />
         <ol style={{ listStyle: `none` }}>
           {posts.map(post => {
-            const title = post.frontmatter.title || post.fields.slug
+            if (post === null) {
+              return null
+            }
+
+            const title = post.frontmatter?.title || post.fields?.slug
 
             return (
-              <li key={post.fields.slug}>
+              <li key={post.fields?.slug}>
                 <article
                   className="post-list-item"
                   itemScope
@@ -41,16 +50,17 @@ const BlogIndex = ({ data, location }) => {
                 >
                   <header>
                     <h2>
-                      <Link to={post.fields.slug} itemProp="url">
+                      <Link to={post.fields?.slug || ""} itemProp="url">
                         <span itemProp="headline">{title}</span>
                       </Link>
                     </h2>
-                    <small>{post.frontmatter.date}</small>
+                    <small>{post.frontmatter?.date}</small>
                   </header>
                   <section>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: post.frontmatter.description || post.excerpt,
+                        __html:
+                          post.frontmatter?.description || post.excerpt || "",
                       }}
                       itemProp="description"
                     />
@@ -75,7 +85,7 @@ export default BlogIndex
 export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
-  {
+  query IndexPage {
     site {
       siteMetadata {
         title

@@ -8,6 +8,7 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  graphqlTypegen: true,
   siteMetadata: {
     title: `Sillanpaa Dev`,
     author: {
@@ -110,5 +111,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
+    {
+      resolve: "gatsby-plugin-typescript",
+      options: {
+        isTSX: true,
+        jsxPragma: `jsx`,
+        allExtensions: true,
+      },
+    },
   ],
 }

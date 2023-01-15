@@ -8,7 +8,15 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-const Seo = ({ description, title, children }) => {
+const Seo = ({
+  description,
+  title,
+  children,
+}: {
+  description?: string
+  title: string
+  children?: React.ReactElement<any, string | React.JSXElementConstructor<any>>
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {

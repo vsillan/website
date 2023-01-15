@@ -1,15 +1,25 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Bio from "../components/Bio"
+import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 
 const BlogPostTemplate = ({
-  data: { previous, next, site, markdownRemark: post },
+  data,
   location,
+}: {
+  data: Queries.BlogPostBySlugQuery
+  location: Location
 }) => {
-  const siteTitle = site.siteMetadata?.title || `Title`
+  const siteTitle = data.site?.siteMetadata?.title || `Title`
+  const post = data.markdownRemark
+  const previous = data.previous
+  const next = data.next
+
+  if (post === null) {
+    return null
+  }
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -19,11 +29,11 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 itemProp="headline">{post.frontmatter?.title}</h1>
+          <p>{post.frontmatter?.date}</p>
         </header>
         <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          dangerouslySetInnerHTML={{ __html: post.html ?? "" }}
           itemProp="articleBody"
         />
         <hr />
@@ -43,15 +53,15 @@ const BlogPostTemplate = ({
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link to={previous.fields?.slug ?? ""} rel="prev">
+                ← {previous.frontmatter?.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link to={next.fields?.slug ?? ""} rel="next">
+                {next.frontmatter?.title} →
               </Link>
             )}
           </li>
@@ -61,11 +71,15 @@ const BlogPostTemplate = ({
   )
 }
 
-export const Head = ({ data: { markdownRemark: post } }) => {
+export const Head = ({
+  data: { markdownRemark: post },
+}: {
+  data: Queries.BlogPostBySlugQuery
+}) => {
   return (
     <Seo
-      title={post.frontmatter.title}
-      description={post.frontmatter.description || post.excerpt}
+      title={post?.frontmatter?.title ?? ""}
+      description={post?.frontmatter?.description || post?.excerpt || ""}
     />
   )
 }
