@@ -10,7 +10,7 @@
 module.exports = {
   graphqlTypegen: true,
   siteMetadata: {
-    title: `Sillanpaa Dev`,
+    title: `sillanpaa.dev`,
     author: {
       name: `Ville Sillanpää`,
       summary: `I've worked as a software developer and architect with technologies like AWS, Azure, .Net, Node.js, and React for around ten years. Lately, I've been primarily focusing on consulting on large web app projects.`,

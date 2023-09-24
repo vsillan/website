@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import { NavBar } from "./NavBar"
 
 type Props = {
   title: string
@@ -26,10 +27,13 @@ const Layout: React.FC<Props> = ({ location, title, children }) => {
   }
 
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      {/* <header className="global-header">{header}</header> */}
-      <main>{children}</main>
-      <footer>© {new Date().getFullYear()}, Ville Sillanpää</footer>
+    <div>
+      <NavBar location={location} />
+      <div className="global-wrapper" data-is-root-path={isRootPath}>
+        {/* <header className="global-header">{header}</header> */}
+        <main>{children}</main>
+        <footer>© {new Date().getFullYear()}, Ville Sillanpää</footer>
+      </div>
     </div>
   )
 }

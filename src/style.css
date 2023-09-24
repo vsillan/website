@@ -53,6 +53,7 @@
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
   --color-primary: #945D5E;
+  --color-secondary: #846C5B;
   --color-text: #E0E0E2;
   --color-text-light: #E0E0E2;
   --color-heading: #3C896D;
@@ -101,8 +102,6 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  margin-top: var(--spacing-12);
-  margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
   letter-spacing: -0.025em;
 }

@@ -1,37 +1,11 @@
 import githubOutline from "@iconify/icons-teenyicons/github-outline"
-import twitterOutline from "@iconify/icons-teenyicons/twitter-outline"
 import linkedinOutline from "@iconify/icons-teenyicons/linkedin-outline"
-
-import { Icon, IconifyIcon } from "@iconify/react"
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import { Link } from "./Link"
-
 import { css } from "@emotion/css"
+import { ExternalLink, InternalLink } from "./Link"
 
-const LinkWithIcon = ({
-  link,
-  description,
-  icon,
-}: {
-  link: string
-  description: string
-  icon: IconifyIcon
-}) => (
-  <Link
-    href={link}
-    className={css`
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    `}
-  >
-    <Icon icon={icon} height={20} />
-    <span>{description}</span>
-  </Link>
-)
-
-export const NavBar = () => {
+export const NavBar = (props: { location: Location }) => {
   const data = useStaticQuery(graphql`
     query NavBarQuery {
       site {
@@ -54,9 +28,35 @@ export const NavBar = () => {
         display: flex;
         justify-content: space-between;
         background-color: #0006;
+        padding: 0 var(--spacing-4);
       `}
     >
-      <span>Sillanpaa Dev</span>
+      <div
+        className={css`
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        `}
+      >
+        {/* <h1>sillanpaa.dev</h1> */}
+        <div
+          className={css`
+            display: flex;
+            gap: 12px;
+          `}
+        >
+          <InternalLink
+            to="/"
+            text="Index"
+            isActive={location.pathname === "/"}
+          />
+          <InternalLink
+            to="/hire-me"
+            text="Hire me"
+            isActive={location.pathname === "/hire-me/"}
+          />
+        </div>
+      </div>
       <div
         className={css`
           display: flex;
@@ -64,21 +64,21 @@ export const NavBar = () => {
           padding: 12px;
         `}
       >
-        <LinkWithIcon
-          link={`https://github.com/${social.github}`}
-          description="Github"
+        <ExternalLink
+          to={`https://github.com/${social.github}`}
+          text="Github"
           icon={githubOutline}
         />
-        <LinkWithIcon
-          link={`https://linkedin.com/in/${social.linkedin}`}
-          description="LinkedIn"
+        <ExternalLink
+          to={`https://linkedin.com/in/${social.linkedin}`}
+          text="LinkedIn"
           icon={linkedinOutline}
         />
-        <LinkWithIcon
+        {/* <ExternalLink
           link={`https://twitter.com/${social.twitter}`}
           description="Twitter"
           icon={twitterOutline}
-        />
+        /> */}
       </div>
     </div>
   )

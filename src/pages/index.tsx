@@ -4,7 +4,6 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/Bio"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-import { NavBar } from "../components/NavBar"
 
 type Props = {
   data: Queries.IndexPageQuery
@@ -30,9 +29,9 @@ const BlogIndex: React.FC<Props> = ({ data, location }) => {
 
   return (
     <>
-      <NavBar />
       <Layout location={location} title={siteTitle}>
         <Bio />
+        <h2>Blog posts</h2>
         <ol style={{ listStyle: `none` }}>
           {posts.map(post => {
             if (post === null) {
