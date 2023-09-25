@@ -96,7 +96,9 @@ export const ContactForm = () => {
         flex-direction: column;
         gap: 12px;
       `}
+      netlify-honeypot="honeybot"
     >
+      <input type="hidden" name="honeybot" />
       <div
         className={css`
           display: flex;
