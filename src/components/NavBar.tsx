@@ -48,12 +48,12 @@ export const NavBar = (props: { location: Location }) => {
           <InternalLink
             to="/"
             text="Index"
-            isActive={location.pathname === "/"}
+            isActive={props.location.pathname === "/"}
           />
           <InternalLink
             to="/hire-me"
             text="Hire me"
-            isActive={location.pathname === "/hire-me/"}
+            isActive={props.location.pathname === "/hire-me/"}
           />
         </div>
       </div>
