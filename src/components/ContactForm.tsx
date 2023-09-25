@@ -91,6 +91,7 @@ export const ContactForm = () => {
       name="contact"
       method="POST"
       data-netlify="true"
+      action="/message-sent"
       className={css`
         display: flex;
         flex-direction: column;
