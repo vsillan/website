@@ -98,6 +98,7 @@ export const ContactForm = () => {
       `}
       netlify-honeypot="honeybot"
     >
+      <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="honeybot" />
       <div
         className={css`
