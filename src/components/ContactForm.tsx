@@ -89,14 +89,13 @@ export const ContactForm = () => {
   return (
     <form
       name="contact"
-      method="post"
-      action="/message-sent"
+      method="POST"
+      data-netlify="true"
       className={css`
         display: flex;
         flex-direction: column;
         gap: 12px;
       `}
-      data-netlify="true"
     >
       <div
         className={css`
