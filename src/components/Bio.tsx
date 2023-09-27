@@ -8,6 +8,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { css } from "@emotion/css"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -21,23 +22,30 @@ const Bio = () => {
           social {
             twitter
           }
+          description
         }
       }
     }
   `)
 
   const author = data.site.siteMetadata?.author
+  const description = data.site.siteMetadata?.description
 
   return (
     <div className="bio">
-      {author?.name && (
-        <div style={{ flex: 1, flexDirection: "column" }}>
-          <p>
-            Hello, I am <strong>{author.name}</strong>
-          </p>
-          <p>{author?.summary || null}</p>
-        </div>
-      )}
+      <div
+        className={css`
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          gap: var(--spacing-2);
+        `}
+      >
+        <p>{description}</p>
+        <p>
+          I'm <strong>{author.name}</strong> and {author?.summary || null}
+        </p>
+      </div>
       <StaticImage
         className="bio-avatar"
         layout="fixed"

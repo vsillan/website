@@ -30,6 +30,7 @@ const BlogIndex: React.FC<Props> = ({ data, location }) => {
   return (
     <>
       <Layout location={location} title={siteTitle}>
+        <h2>Welcome</h2>
         <Bio />
         <h2>Blog posts</h2>
         <ol style={{ listStyle: `none` }}>

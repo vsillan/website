@@ -13,9 +13,9 @@ module.exports = {
     title: `sillanpaa.dev`,
     author: {
       name: `Ville Sillanpää`,
-      summary: `I've worked as a software developer and architect with technologies like AWS, Azure, .Net, Node.js, and React for around ten years. Lately, I've been primarily focusing on consulting on large web app projects.`,
+      summary: `I've worked in the software development industry for around ten years. Lately, I've been primarily focusing on consulting on complex web app, infrastructure, and data projects.`,
     },
-    description: `A blog`,
+    description: `This is a blog about software development and the website for my solo consulting business.`,
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: `sillanpaa_dev`,
