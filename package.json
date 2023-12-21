@@ -1,7 +1,7 @@
 {
-  "name": "sillanpaa-dev-blog",
+  "name": "sillanpaa-dev",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "",
   "version": "0.1.0",
   "author": "Ville Sillanpää <ville.sillapaa@system-kasei.com>",
   "dependencies": {
@@ -15,6 +15,7 @@
     "gatsby": "^5.2.0",
     "gatsby-plugin-emotion": "^8.3.0",
     "gatsby-plugin-feed": "^5.2.0",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^3.2.0",
     "gatsby-plugin-manifest": "^5.2.0",
     "gatsby-plugin-netlify": "^5.1.0",

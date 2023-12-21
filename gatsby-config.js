@@ -120,5 +120,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: ["Martel", "Ubuntu"],
+        display: "swap",
+      },
+    },
   ],
 }
