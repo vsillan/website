@@ -52,13 +52,13 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #945D5E;
+  --color-primary: #b97374;
   --color-secondary: #846C5B;
   --color-text: #E0E0E2;
   --color-text-light: #E0E0E2;
-  --color-heading: #3C896D;
-  --color-accent: #945D5E;
-  --color-background: #1C2826;
+  --color-heading: #439778;
+  --color-accent: #b97374;
+  --color-background: #1a2423;
 }
 
 /* HTML elements */
