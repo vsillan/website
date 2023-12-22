@@ -32,13 +32,20 @@ const Bio = () => {
   const description = data.site.siteMetadata?.description
 
   return (
-    <div className="bio">
+    <div
+      className={css`
+        display: flex;
+        gap: var(--spacing-16);
+        @media (max-width: 800px) {
+          flex-direction: column;
+        }
+      `}
+    >
       <div
         className={css`
           display: flex;
           flex: 1;
           flex-direction: column;
-          gap: var(--spacing-2);
         `}
       >
         <p>{description}</p>
@@ -46,16 +53,26 @@ const Bio = () => {
           I'm <strong>{author.name}</strong> and {author?.summary || null}
         </p>
       </div>
-      <StaticImage
-        className="bio-avatar"
-        layout="fixed"
-        formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic2.jpeg"
-        width={200}
-        height={200}
-        quality={100}
-        alt="Profile picture"
-      />
+      <div
+        className={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <StaticImage
+          className={css`
+            min-width: 50px;
+            border-radius: 100%;
+          `}
+          layout="fixed"
+          formats={["auto", "webp", "avif"]}
+          src="../images/profile-pic2.jpeg"
+          width={200}
+          height={200}
+          quality={100}
+          alt="Profile picture"
+        />
+      </div>
     </div>
   )
 }
