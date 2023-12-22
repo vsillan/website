@@ -17,7 +17,6 @@ export const ExternalLink = ({
     className={css`
       display: flex;
       gap: 4px;
-      align-items: center;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
