@@ -105,6 +105,9 @@ export const ContactForm = () => {
         className={css`
           display: flex;
           gap: 12px;
+          @media (max-width: 800px) {
+            flex-direction: column;
+          }
         `}
       >
         <FormInput label="Name" name="name" type="text" />
