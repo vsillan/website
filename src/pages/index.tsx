@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import mixpanel from "mixpanel-browser"
 
 import Bio from "../components/Bio"
 import Layout from "../components/Layout"
@@ -10,9 +11,14 @@ type Props = {
   location: Location
 }
 
-const BlogIndex: React.FC<Props> = ({ data, location }) => {
-  const siteTitle = data.site?.siteMetadata?.title || `Title`
+const Index: React.FC<Props> = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
+
+  mixpanel.init("53e4520485c270bac10c04a9c6d050a0", {
+    debug: true,
+    track_pageview: true,
+    persistence: "localStorage",
+  })
 
   if (posts.length === 0) {
     return (
@@ -28,54 +34,52 @@ const BlogIndex: React.FC<Props> = ({ data, location }) => {
   }
 
   return (
-    <>
-      <Layout location={location}>
-        <h1>Welcome</h1>
-        <Bio />
-        <h2>Blog posts</h2>
-        <ol style={{ listStyle: `none` }}>
-          {posts.map(post => {
-            if (post === null) {
-              return null
-            }
+    <Layout location={location}>
+      <h1>Welcome</h1>
+      <Bio />
+      <h2>Blog posts</h2>
+      <ol style={{ listStyle: `none` }}>
+        {posts.map(post => {
+          if (post === null) {
+            return null
+          }
 
-            const title = post.frontmatter?.title || post.fields?.slug
+          const title = post.frontmatter?.title || post.fields?.slug
 
-            return (
-              <li key={post.fields?.slug}>
-                <article
-                  className="post-list-item"
-                  itemScope
-                  itemType="http://schema.org/Article"
-                >
-                  <header>
-                    <h2>
-                      <Link to={post.fields?.slug || ""} itemProp="url">
-                        <span itemProp="headline">{title}</span>
-                      </Link>
-                    </h2>
-                    <small>{post.frontmatter?.date}</small>
-                  </header>
-                  <section>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          post.frontmatter?.description || post.excerpt || "",
-                      }}
-                      itemProp="description"
-                    />
-                  </section>
-                </article>
-              </li>
-            )
-          })}
-        </ol>
-      </Layout>
-    </>
+          return (
+            <li key={post.fields?.slug}>
+              <article
+                className="post-list-item"
+                itemScope
+                itemType="http://schema.org/Article"
+              >
+                <header>
+                  <h2>
+                    <Link to={post.fields?.slug || ""} itemProp="url">
+                      <span itemProp="headline">{title}</span>
+                    </Link>
+                  </h2>
+                  <small>{post.frontmatter?.date}</small>
+                </header>
+                <section>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        post.frontmatter?.description || post.excerpt || "",
+                    }}
+                    itemProp="description"
+                  />
+                </section>
+              </article>
+            </li>
+          )
+        })}
+      </ol>
+    </Layout>
   )
 }
 
-export default BlogIndex
+export default Index
 
 /**
  * Head export to define metadata for the page
