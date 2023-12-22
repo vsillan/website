@@ -38,6 +38,7 @@ const Bio = () => {
         gap: var(--spacing-16);
         @media (max-width: 800px) {
           flex-direction: column;
+          gap: var(--spacing-4);
         }
       `}
     >

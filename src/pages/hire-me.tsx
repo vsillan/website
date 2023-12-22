@@ -29,7 +29,7 @@ const techSkills = [
 
 const HireMe: React.FC<Props> = ({ location }) => {
   return (
-    <Layout title="Hire me" location={location}>
+    <Layout location={location}>
       <h2>What do I do?</h2>
       <p>
         I'm all about efficiently delivering software projects. I can take on
