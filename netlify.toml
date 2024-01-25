@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "https://villesillanpaa.com/*"
+  to = "https://sillanpaa.dev/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://www.villesillanpaa.com/*"
+  to = "https://sillanpaa.dev/:splat"
+  status = 301
+  force = true
