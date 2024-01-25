@@ -60,11 +60,6 @@ export const NavBar = (props: { location: Location }) => {
           text="LinkedIn"
           icon={linkedinOutline}
         />
-        {/* <ExternalLink
-          link={`https://twitter.com/${social.twitter}`}
-          description="Twitter"
-          icon={twitterOutline}
-        /> */}
       </LinkContainer>
     </NavBarContainer>
   )
