@@ -12,8 +12,13 @@ const A = styled.a`
   }
 `
 
-const InternalLinkContainer = styled.span<{ isActive: boolean }>`
+const InternalLinkContainer = styled.span<{
+  isActive: boolean
+  useHeadingColor: boolean
+}>`
   a {
+    color: ${props =>
+      props.useHeadingColor ? "var(--color-heading)" : "var(--color-primary)"};
     text-decoration: ${props => (props.isActive ? "underline" : "none")};
     &:hover {
       text-decoration: underline;
@@ -40,8 +45,12 @@ export const InternalLink = (props: {
   to: string
   text: string
   isActive?: boolean
+  useHeadingColor?: boolean
 }) => (
-  <InternalLinkContainer isActive={!!props.isActive}>
+  <InternalLinkContainer
+    isActive={!!props.isActive}
+    useHeadingColor={!!props.useHeadingColor}
+  >
     <Link to={props.to}>{props.text}</Link>
   </InternalLinkContainer>
 )

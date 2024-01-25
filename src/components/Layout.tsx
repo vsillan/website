@@ -1,3 +1,4 @@
+import styled from "@emotion/styled"
 import { NavBar } from "./NavBar"
 
 type Props = {
@@ -5,17 +6,20 @@ type Props = {
   children: React.ReactNode
 }
 
-const Layout: React.FC<Props> = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__ as any}/`
-  const isRootPath = location.pathname === rootPath
+const ContentWrapper = styled.div`
+  margin: var(--spacing-0) auto;
+  max-width: var(--maxWidth-wrapper);
+  padding: 0 var(--spacing-5);
+`
 
+const Layout: React.FC<Props> = ({ location, children }) => {
   return (
     <div>
       <NavBar location={location} />
-      <div className="global-wrapper" data-is-root-path={isRootPath}>
+      <ContentWrapper>
         <main>{children}</main>
         <footer>© {new Date().getFullYear()}, Ville Sillanpää</footer>
-      </div>
+      </ContentWrapper>
     </div>
   )
 }

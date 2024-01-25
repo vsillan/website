@@ -19,6 +19,10 @@ const BlogPostsDivider = styled.hr`
   opacity: 0.2;
 `
 
+const BlogPostTitle = styled.h2`
+  color: var(--color-heading);
+`
+
 type Props = {
   data: Queries.IndexPageQuery
   location: Location
@@ -63,12 +67,13 @@ const Index: React.FC<Props> = ({ data, location }) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h2>
+                  <BlogPostTitle>
                     <InternalLink
                       to={post.fields?.slug || ""}
                       text={title ?? ""}
+                      useHeadingColor
                     />
-                  </h2>
+                  </BlogPostTitle>
                   <small>{post.frontmatter?.date}</small>
                 </header>
                 <section>
