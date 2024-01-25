@@ -8,19 +8,35 @@ import Seo from "../components/Seo"
 import { InternalLink } from "../components/Link"
 import styled from "@emotion/styled"
 
-const BlogPostsDividerText = styled.span`
+const PostsDividerText = styled.span`
   color: var(--color-text-dark);
   display: block;
-  padding-top: var(--spacing-6);
+  padding-top: var(--spacing-10);
 `
 
-const BlogPostsDivider = styled.hr`
+const PostsDivider = styled.hr`
   background-color: var(--color-text-dark);
   opacity: 0.2;
 `
 
-const BlogPostTitle = styled.h2`
+const PostTitle = styled.h2`
   color: var(--color-heading);
+`
+
+const PostListItem = styled.article`
+  margin-bottom: var(--spacing-8);
+  margin-top: var(--spacing-8);
+
+  h2 {
+    font-size: var(--fontSize-4);
+    color: var(--color-heading);
+    margin-bottom: var(--spacing-2);
+    margin-top: var(--spacing-0);
+  }
+
+  header {
+    margin-bottom: var(--spacing-4);
+  }
 `
 
 type Props = {
@@ -49,8 +65,8 @@ const Index: React.FC<Props> = ({ data, location }) => {
     <Layout location={location}>
       <h1>Welcome</h1>
       <Bio />
-      <BlogPostsDividerText>Blog posts</BlogPostsDividerText>
-      <BlogPostsDivider />
+      <PostsDividerText>Blog posts</PostsDividerText>
+      <PostsDivider />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           if (post === null) {
@@ -61,19 +77,19 @@ const Index: React.FC<Props> = ({ data, location }) => {
 
           return (
             <li key={post.fields?.slug}>
-              <article
+              <PostListItem
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <BlogPostTitle>
+                  <PostTitle>
                     <InternalLink
                       to={post.fields?.slug || ""}
                       text={title ?? ""}
                       useHeadingColor
                     />
-                  </BlogPostTitle>
+                  </PostTitle>
                   <small>{post.frontmatter?.date}</small>
                 </header>
                 <section>
@@ -85,7 +101,7 @@ const Index: React.FC<Props> = ({ data, location }) => {
                     itemProp="description"
                   />
                 </section>
-              </article>
+              </PostListItem>
             </li>
           )
         })}
