@@ -2,8 +2,21 @@ import githubOutline from "@iconify/icons-teenyicons/github-outline"
 import linkedinOutline from "@iconify/icons-teenyicons/linkedin-outline"
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import { css } from "@emotion/css"
 import { ExternalLink, InternalLink } from "./Link"
+import styled from "@emotion/styled"
+
+const NavBarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #0006;
+  padding: var(--spacing-4);
+`
+
+const LinkContainer = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`
 
 export const NavBar = (props: { location: Location }) => {
   const data = useStaticQuery(graphql`
@@ -23,47 +36,20 @@ export const NavBar = (props: { location: Location }) => {
   const social = data.site.siteMetadata?.social
 
   return (
-    <div
-      className={css`
-        display: flex;
-        justify-content: space-between;
-        background-color: #0006;
-        padding: 0 var(--spacing-4);
-      `}
-    >
-      <div
-        className={css`
-          display: flex;
-          gap: 20px;
-          align-items: center;
-        `}
-      >
-        {/* <h1>sillanpaa.dev</h1> */}
-        <div
-          className={css`
-            display: flex;
-            gap: 12px;
-          `}
-        >
-          <InternalLink
-            to="/"
-            text="Index"
-            isActive={props.location.pathname === "/"}
-          />
-          <InternalLink
-            to="/hire-me"
-            text="Hire me"
-            isActive={props.location.pathname === "/hire-me/"}
-          />
-        </div>
-      </div>
-      <div
-        className={css`
-          display: flex;
-          gap: 12px;
-          padding: 12px;
-        `}
-      >
+    <NavBarContainer>
+      <LinkContainer>
+        <InternalLink
+          to="/"
+          text="Index"
+          isActive={props.location.pathname === "/"}
+        />
+        <InternalLink
+          to="/hire-me"
+          text="Hire me"
+          isActive={props.location.pathname === "/hire-me/"}
+        />
+      </LinkContainer>
+      <LinkContainer>
         <ExternalLink
           to={`https://github.com/${social.github}`}
           text="Github"
@@ -79,7 +65,7 @@ export const NavBar = (props: { location: Location }) => {
           description="Twitter"
           icon={twitterOutline}
         /> */}
-      </div>
-    </div>
+      </LinkContainer>
+    </NavBarContainer>
   )
 }

@@ -1,8 +1,8 @@
 import * as React from "react"
 import Layout from "../components/Layout"
-import { css } from "@emotion/css"
 import { ContactForm } from "../components/ContactForm"
 import { Chip } from "../components/Chip"
+import styled from "@emotion/styled"
 
 type Props = {
   location: Location
@@ -27,6 +27,12 @@ const techSkills = [
   "React native",
 ]
 
+const ChipContainer = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+`
+
 const HireMe: React.FC<Props> = ({ location }) => {
   return (
     <Layout location={location}>
@@ -48,17 +54,11 @@ const HireMe: React.FC<Props> = ({ location }) => {
         the software development cycle.
       </p>
       <h2>Tech skills</h2>
-      <div
-        className={css`
-          display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
-        `}
-      >
+      <ChipContainer>
         {techSkills.map(skill => (
           <Chip text={skill} />
         ))}
-      </div>
+      </ChipContainer>
       <h2>Send me a message</h2>
       <ContactForm />
     </Layout>

@@ -1,4 +1,53 @@
-import { css } from "@emotion/css"
+import styled from "@emotion/styled"
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`
+
+const InputRow = styled.div`
+  display: flex;
+  gap: 12px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+`
+
+const Input = styled.input`
+  &:hover,
+  &:focus {
+    outline: 2px solid var(--color-primary);
+  }
+`
+
+const Textarea = styled.textarea`
+  &:hover,
+  &:focus {
+    outline: 2px solid var(--color-primary);
+  }
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Button = styled.div`
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+`
 
 type FormInputProps = {
   label: string
@@ -8,113 +57,47 @@ type FormInputProps = {
 
 const FormInput = (props: FormInputProps) => {
   return (
-    <div
-      className={css`
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        gap: 4px;
-      `}
-    >
+    <InputContainer>
       <label>{props.label}</label>
-      <input
-        type={props.type}
-        name={props.name}
-        id={props.name}
-        required
-        className={css`
-          &:hover,
-          &:focus {
-            outline: 2px solid var(--color-primary);
-          }
-        `}
-      />
-    </div>
+      <Input type={props.type} name={props.name} id={props.name} required />
+    </InputContainer>
   )
 }
 
 const FormMessageTextArea = () => {
   return (
-    <div
-      className={css`
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        gap: 4px;
-      `}
-    >
+    <InputContainer>
       <label>Message</label>
-      <textarea
-        name="message"
-        id="message"
-        rows={10}
-        required
-        className={css`
-          &:hover,
-          &:focus {
-            outline: 2px solid var(--color-primary);
-          }
-        `}
-      />
-    </div>
+      <Textarea name="message" id="message" rows={10} required />
+    </InputContainer>
   )
 }
 
 const SubmitButton = () => {
   return (
-    <div
-      className={css`
-        display: flex;
-        justify-content: center;
-      `}
-    >
-      <button
-        type="submit"
-        className={css`
-          padding: 8px 16px;
-          border-radius: 999px;
-          cursor: pointer;
-          border: 2px solid var(--color-primary);
-          background-color: var(--color-primary);
-          color: var(--color-text);
-        `}
-      >
-        Submit
-      </button>
-    </div>
+    <ButtonContainer>
+      <Button>Submit</Button>
+    </ButtonContainer>
   )
 }
 
 export const ContactForm = () => {
   return (
-    <form
+    <Form
       name="contact"
       method="POST"
       data-netlify="true"
       action="/message-sent"
-      className={css`
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      `}
       netlify-honeypot="honeybot"
     >
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="honeybot" />
-      <div
-        className={css`
-          display: flex;
-          gap: 12px;
-          @media (max-width: 800px) {
-            flex-direction: column;
-          }
-        `}
-      >
+      <InputRow>
         <FormInput label="Name" name="name" type="text" />
         <FormInput label="Email" name="email" type="email" />
-      </div>
+      </InputRow>
       <FormMessageTextArea />
       <SubmitButton />
-    </form>
+    </Form>
   )
 }

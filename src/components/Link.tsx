@@ -1,7 +1,23 @@
-import { css } from "@emotion/css"
 import { Icon, IconifyIcon } from "@iconify/react"
 import React from "react"
 import { Link } from "gatsby"
+import styled from "@emotion/styled"
+
+const A = styled.a`
+  display: flex;
+  gap: 4px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const LinkText = styled.span<{ isActive: boolean }>`
+  text-decoration: ${props => (props.isActive ? "underline" : "none")};
+  &:hover {
+    text-decoration: underline;
+  }
+`
 
 export const ExternalLink = ({
   to,
@@ -12,20 +28,10 @@ export const ExternalLink = ({
   text: string
   icon: IconifyIcon
 }) => (
-  <a
-    href={to}
-    className={css`
-      display: flex;
-      gap: 4px;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    `}
-  >
+  <A href={to}>
     <Icon icon={icon} height={20} />
     <span>{text}</span>
-  </a>
+  </A>
 )
 
 export const InternalLink = (props: {
@@ -33,15 +39,7 @@ export const InternalLink = (props: {
   text: string
   isActive?: boolean
 }) => (
-  <Link
-    to={props.to}
-    className={css`
-      text-decoration: ${props.isActive ? "underline" : "none"};
-      &:hover {
-        text-decoration: underline;
-      }
-    `}
-  >
-    {props.text}
+  <Link to={props.to}>
+    <LinkText isActive={!!props.isActive}>{props.text}</LinkText>
   </Link>
 )

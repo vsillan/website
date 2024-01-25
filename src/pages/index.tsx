@@ -1,12 +1,23 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import mixpanel from "mixpanel-browser"
 
 import Bio from "../components/Bio"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-import { css } from "@emotion/css"
 import { InternalLink } from "../components/Link"
+import styled from "@emotion/styled"
+
+const BlogPostsDividerText = styled.span`
+  color: var(--color-text-dark);
+  display: block;
+  padding-top: var(--spacing-6);
+`
+
+const BlogPostsDivider = styled.hr`
+  background-color: var(--color-text-dark);
+  opacity: 0.2;
+`
 
 type Props = {
   data: Queries.IndexPageQuery
@@ -34,22 +45,8 @@ const Index: React.FC<Props> = ({ data, location }) => {
     <Layout location={location}>
       <h1>Welcome</h1>
       <Bio />
-      <span
-        className={css`
-          color: var(--color-text-dark);
-          color: var(--color-text-dark);
-          display: block;
-          padding-top: var(--spacing-6);
-        `}
-      >
-        Blog posts
-      </span>
-      <hr
-        className={css`
-          background-color: var(--color-text-dark);
-          opacity: 0.2;
-        `}
-      />
+      <BlogPostsDividerText>Blog posts</BlogPostsDividerText>
+      <BlogPostsDivider />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           if (post === null) {

@@ -8,7 +8,31 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { css } from "@emotion/css"
+import styled from "@emotion/styled"
+
+const StaticImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  div {
+    min-width: 50px;
+    border-radius: 100%;
+  }
+`
+
+const BioTextContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`
+
+const BioContainer = styled.div`
+  display: flex;
+  gap: var(--spacing-16);
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+`
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -18,9 +42,6 @@ const Bio = () => {
           author {
             name
             summary
-          }
-          social {
-            twitter
           }
           description
         }
@@ -32,39 +53,15 @@ const Bio = () => {
   const description = data.site.siteMetadata?.description
 
   return (
-    <div
-      className={css`
-        display: flex;
-        gap: var(--spacing-16);
-        @media (max-width: 800px) {
-          flex-direction: column;
-          gap: var(--spacing-4);
-        }
-      `}
-    >
-      <div
-        className={css`
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-        `}
-      >
+    <BioContainer>
+      <BioTextContainer>
         <p>{description}</p>
         <p>
           I'm <strong>{author.name}</strong> and {author?.summary || null}
         </p>
-      </div>
-      <div
-        className={css`
-          display: flex;
-          justify-content: center;
-        `}
-      >
+      </BioTextContainer>
+      <StaticImageContainer>
         <StaticImage
-          className={css`
-            min-width: 50px;
-            border-radius: 100%;
-          `}
           layout="fixed"
           formats={["auto", "webp", "avif"]}
           src="../images/profile-pic2.jpeg"
@@ -73,8 +70,8 @@ const Bio = () => {
           quality={100}
           alt="Profile picture"
         />
-      </div>
-    </div>
+      </StaticImageContainer>
+    </BioContainer>
   )
 }
 
