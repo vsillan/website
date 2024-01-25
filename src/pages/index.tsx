@@ -24,11 +24,6 @@ const Index: React.FC<Props> = ({ data, location }) => {
     return (
       <Layout location={location}>
         <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
       </Layout>
     )
   }
@@ -86,7 +81,7 @@ export default Index
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="All posts" />
+export const Head = () => <Seo title="Software development blog" />
 
 export const pageQuery = graphql`
   query IndexPage {
