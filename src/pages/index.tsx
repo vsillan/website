@@ -6,6 +6,7 @@ import Bio from "../components/Bio"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { css } from "@emotion/css"
+import { InternalLink } from "../components/Link"
 
 type Props = {
   data: Queries.IndexPageQuery
@@ -66,9 +67,10 @@ const Index: React.FC<Props> = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.fields?.slug || ""} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
+                    <InternalLink
+                      to={post.fields?.slug || ""}
+                      text={title ?? ""}
+                    />
                   </h2>
                   <small>{post.frontmatter?.date}</small>
                 </header>

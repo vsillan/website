@@ -31,7 +31,7 @@ export const ExternalLink = ({
 export const InternalLink = (props: {
   to: string
   text: string
-  isActive: boolean
+  isActive?: boolean
 }) => (
   <Link
     to={props.to}
