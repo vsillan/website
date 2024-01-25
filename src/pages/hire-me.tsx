@@ -55,7 +55,6 @@ const HireMe: React.FC<Props> = ({ location }) => {
           flex-wrap: wrap;
         `}
       >
-        {" "}
         {techSkills.map(skill => (
           <Chip text={skill} />
         ))}

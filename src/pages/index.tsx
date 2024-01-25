@@ -5,6 +5,7 @@ import mixpanel from "mixpanel-browser"
 import Bio from "../components/Bio"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
+import { css } from "@emotion/css"
 
 type Props = {
   data: Queries.IndexPageQuery
@@ -32,7 +33,22 @@ const Index: React.FC<Props> = ({ data, location }) => {
     <Layout location={location}>
       <h1>Welcome</h1>
       <Bio />
-      <h2>Blog posts</h2>
+      <span
+        className={css`
+          color: var(--color-text-dark);
+          color: var(--color-text-dark);
+          display: block;
+          padding-top: var(--spacing-6);
+        `}
+      >
+        Blog posts
+      </span>
+      <hr
+        className={css`
+          background-color: var(--color-text-dark);
+          opacity: 0.2;
+        `}
+      />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           if (post === null) {
