@@ -36,6 +36,7 @@ export const InternalLink = (props: {
   <Link
     to={props.to}
     className={css`
+      text-decoration: ${props.isActive ? "underline" : "none"};
       &:hover {
         text-decoration: underline;
       }
