@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { NavBar } from "./NavBar"
+import { ThemeProvider } from "../context/ThemeContext"
 
 type Props = {
   location: Location
@@ -14,13 +15,15 @@ const ContentWrapper = styled.div`
 
 const Layout: React.FC<Props> = ({ location, children }) => {
   return (
-    <div>
-      <NavBar location={location} />
-      <ContentWrapper>
-        <main>{children}</main>
-        <footer>© {new Date().getFullYear()}, Ville Sillanpää</footer>
-      </ContentWrapper>
-    </div>
+    <ThemeProvider>
+      <div>
+        <NavBar location={location} />
+        <ContentWrapper>
+          <main>{children}</main>
+          <footer>© {new Date().getFullYear()}, Ville Sillanpää</footer>
+        </ContentWrapper>
+      </div>
+    </ThemeProvider>
   )
 }
 

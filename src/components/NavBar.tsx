@@ -3,12 +3,13 @@ import linkedinOutline from "@iconify/icons-teenyicons/linkedin-outline"
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { ExternalLink, InternalLink } from "./Link"
+import { ThemeToggle } from "./ThemeToggle"
 import styled from "@emotion/styled"
 
 const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #0006;
+  background-color: #1a2423;
   padding: var(--spacing-4);
 `
 
@@ -50,6 +51,7 @@ export const NavBar = (props: { location: Location }) => {
         />
       </LinkContainer>
       <LinkContainer>
+        <ThemeToggle />
         <ExternalLink
           to={`https://github.com/${social.github}`}
           text="Github"

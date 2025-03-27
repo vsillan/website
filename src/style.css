@@ -62,6 +62,13 @@
   --breakpoint-sm: 420px;
 }
 
+[data-theme="light"] {
+  --color-text: #2d3748;
+  --color-text-dark: #4a5568;
+  --color-heading: #1a202c;
+  --color-background: #ffffff;
+}
+
 /* HTML elements */
 
 *,
