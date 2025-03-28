@@ -62,13 +62,12 @@ const Bio = () => {
       </BioTextContainer>
       <StaticImageContainer>
         <StaticImage
-          layout="fixed"
-          formats={["auto", "webp", "avif"]}
           src="../images/profile-pic2.jpeg"
           width={200}
           height={200}
           quality={100}
           alt="Profile picture"
+          style={{ borderRadius: "50%" }}
         />
       </StaticImageContainer>
     </BioContainer>

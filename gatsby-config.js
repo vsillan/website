@@ -111,14 +111,7 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-typescript",
-      options: {
-        isTSX: true,
-        jsxPragma: `jsx`,
-        allExtensions: true,
-      },
-    },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-fonts`,
