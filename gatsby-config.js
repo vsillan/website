@@ -16,7 +16,7 @@ module.exports = {
       summary: `I've worked in the software development industry for around ten years. Lately, I've been primarily focusing on consulting on complex web app, infrastructure, and data projects.`,
     },
     description: `This is a blog about software development and the website for my solo consulting business.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://sillanpaa.dev`,
     social: {
       twitter: `sillanpaa_dev`,
       github: `vsillan`,
@@ -73,6 +73,10 @@ module.exports = {
                 description
                 siteUrl
                 site_url: siteUrl
+                author {
+                  name
+                  summary
+                }
               }
             }
           }
@@ -87,6 +91,10 @@ module.exports = {
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
+                  author: site.siteMetadata.author.name,
+                  categories: ["blog", "software development"],
+                  language: "en",
+                  copyright: `© ${new Date().getFullYear()} ${site.siteMetadata.author.name}`,
                 })
               })
             },
@@ -106,7 +114,13 @@ module.exports = {
               }
             }`,
             output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+            title: "sillanpaa.dev blog RSS feed",
+            description: "Blog post about software development and consulting",
+            site_url: "https://sillanpaa.dev",
+            image_url: "https://sillanpaa.dev/og-image.jpg",
+            pubDate: new Date(),
+            language: "en",
+            copyright: `© ${new Date().getFullYear()} Ville Sillanpää`,
           },
         ],
       },

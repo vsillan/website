@@ -1,5 +1,6 @@
 import githubOutline from "@iconify/icons-teenyicons/github-outline"
 import linkedinOutline from "@iconify/icons-teenyicons/linkedin-outline"
+import rssOutline from "@iconify/icons-teenyicons/rss-outline"
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { ExternalLink, InternalLink } from "./Link"
@@ -52,6 +53,7 @@ export const NavBar = (props: { location: Location }) => {
       </LinkContainer>
       <LinkContainer>
         <ThemeToggle />
+        <ExternalLink to="/rss" text="RSS" icon={rssOutline} />
         <ExternalLink
           to={`https://github.com/${social.github}`}
           text="Github"

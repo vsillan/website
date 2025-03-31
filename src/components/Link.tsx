@@ -30,13 +30,15 @@ export const ExternalLink = ({
   to,
   text,
   icon,
+  iconSize = 20,
 }: {
   to: string
   text: string
   icon: IconifyIcon
+  iconSize?: number
 }) => (
   <A href={to}>
-    <Icon icon={icon} height={20} />
+    <Icon icon={icon} height={iconSize} />
     <span>{text}</span>
   </A>
 )
