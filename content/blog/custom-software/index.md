@@ -1,5 +1,5 @@
 ---
-title: Why invest in custom business software?
+title: Why Invest in Custom Business Software?
 date: "2022-12-10"
 description: A post about the benefits of developing custom business software over buying off-the-shelf solutions.
 ---
