@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+const siteUrl = "https://sillanpaa.dev"
+
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -16,7 +18,7 @@ module.exports = {
       summary: `I've worked in the software development industry for around ten years. Lately, I've been primarily focusing on consulting on complex web app, infrastructure, and data projects.`,
     },
     description: `This is a blog about software development and the website for my solo consulting business.`,
-    siteUrl: `https://sillanpaa.dev`,
+    siteUrl,
     social: {
       twitter: `sillanpaa_dev`,
       github: `vsillan`,
@@ -116,7 +118,7 @@ module.exports = {
             output: "/rss.xml",
             title: "sillanpaa.dev blog RSS feed",
             description: "Blog post about software development and consulting",
-            site_url: "https://sillanpaa.dev",
+            site_url: siteUrl,
             image_url: "https://sillanpaa.dev/og-image.jpg",
             pubDate: new Date(),
             language: "en",
@@ -127,35 +129,7 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-netlify`,
-    {
-      resolve: `gatsby-plugin-sitemap`,
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
-            allSitePage {
-              nodes {
-                path
-                context {
-                  lastmod
-                }
-              }
-            }
-          }
-        `,
-        resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
-        serialize: ({ path, context }) => {
-          return {
-            url: path,
-            lastmod: context?.lastmod || new Date().toISOString(),
-          }
-        },
-      },
-    },
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
