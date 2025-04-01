@@ -127,7 +127,35 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+                context {
+                  lastmod
+                }
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
+        serialize: ({ path, context }) => {
+          return {
+            url: path,
+            lastmod: context?.lastmod || new Date().toISOString(),
+          }
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {

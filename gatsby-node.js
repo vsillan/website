@@ -25,6 +25,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           fields {
             slug
           }
+          frontmatter {
+            date
+          }
         }
       }
     }
@@ -56,10 +59,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: post.id,
           previousPostId,
           nextPostId,
+          lastmod: post.frontmatter.date,
         },
       })
     })
   }
+
+  // Create static pages with lastmod dates
+  const staticPages = [
+    { path: '/', lastmod: '2024-03-31' }, // Last major update to homepage
+    { path: '/hire-me', lastmod: '2024-03-31' }, // Last update to hire-me page
+    { path: '/message-sent', lastmod: '2024-03-31' }, // Last update to message-sent page
+    { path: '/rss', lastmod: '2024-03-31' }, // Last update to RSS feed
+  ]
+
+  staticPages.forEach(page => {
+    createPage({
+      path: page.path,
+      component: path.resolve(`./src/pages${page.path === '/' ? '/index' : page.path}.tsx`),
+      context: {
+        lastmod: page.lastmod,
+      },
+    })
+  })
 }
 
 /**
