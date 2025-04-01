@@ -127,6 +127,7 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
